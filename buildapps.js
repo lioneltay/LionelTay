@@ -7,12 +7,14 @@ ncp.limit = 16
 
 const apps = [
 	'MathSite',
+	'Home',
+	'Checkers',
 ]
 
 console.log('Building and collecting apps')
 
 apps.forEach(app => {
-	exec(`cd ${app} && npm run serverbuild`, (error, stdout, stderr) => {
+	exec(`cd ${app} && npm run build`, (error, stdout, stderr) => {
 		if (error) {
 			console.error(`exec error: ${error}`)
 			return
@@ -27,6 +29,8 @@ apps.forEach(app => {
 
 function copyDistToServer(appName) {
 	const dir = `./Server/src/public/${appName}/dist`
+	shell.rm('-rf', dir)
+	
 	if (!fs.existsSync(dir)) {
 		shell.mkdir('-p', path.join(__dirname, dir))
 	}

@@ -1,12 +1,10 @@
 {
-  "bin": {
-    "snippets": "snippets.js"
-  },
   "scripts": {
-    "build": "node build.js",
-		"start": "npm run build && cd Server && npm run start",
+    "build": "node buildapps.js && cd Server && npm run build",
+		"start": "cd Server && npm run start",
 		"deployserver": "cd Server && npm run deploy",
-		"deploy": "npm run build && npm run deployserver"		
+		"deploy": "npm run build && npm run deployserver",
+		"go": "npm run build && npm run start"
   },
   "dependencies": {
     "ncp": "^2.0.0",
